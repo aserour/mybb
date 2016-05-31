@@ -2273,10 +2273,10 @@ function write_settings()
 		$file = fopen(MYBB_ROOT."inc/settings.php", "w");
 		fwrite($file, $settings);
 		fclose($file);
-		
-		// sync config files into Amazon S3 to be synced later on all instances.
-		exec("/tmp/uploadConfigToS3.sh");
-		
+
+		// sync config files into a central location (i.e. Amazon S3) to be synced later on all instances.
+		exec("/hooks/post-configure.sh");
+
 	}
 }
 ?>
